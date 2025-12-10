@@ -119,10 +119,25 @@ git push origin main
 ```
 
 ### 4. Verificar el workflow
-1. Ve a tu repositorio en GitHub
-2. Click en la pestaña **Actions**
-3. Verás el workflow ejecutándose
-4. Si falla, revisa los logs y verifica que los secrets estén bien configurados
+
+⚠️ **SI VES ESTE ERROR:**
+```
+ERROR: (gcloud.container.clusters.get-credentials) You do not currently have an active account selected.
+```
+
+**SOLUCIÓN:** El secret `GCP_SERVICE_ACCOUNT_KEY` no está configurado. Ve al paso 1 y configúralo correctamente.
+
+**Pasos de verificación:**
+1. **Primero, ejecuta el workflow de prueba:**
+   - Ve a Actions → "Test GCP Authentication" → Run workflow
+   - Esto verifica que tus secrets estén bien configurados
+   - Si falla, consulta `DEBUGGING_GUIDE.md`
+
+2. **Una vez que la prueba pase, el workflow principal funcionará:**
+   - Ve a tu repositorio en GitHub
+   - Click en la pestaña **Actions**
+   - Verás el workflow "Build and Deploy to GKE" ejecutándose
+   - Si falla, revisa los logs detallados
 
 ## ❌ Diferencias con Travis CI Eliminadas
 

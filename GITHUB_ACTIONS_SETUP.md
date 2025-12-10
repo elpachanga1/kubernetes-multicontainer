@@ -31,6 +31,8 @@ Para copiar el valor:
 - Abre el archivo `multik8s-480817-178af3bdc5fd.json`
 - Copia **TODO** el contenido (desde `{` hasta `}`)
 - Pégalo en el campo de valor del secret
+- **IMPORTANTE**: Debe ser JSON válido en una sola línea o con saltos de línea preservados
+- El JSON debe comenzar con `{` y terminar con `}`
 
 #### 2. DOCKER_USERNAME
 ```
@@ -141,17 +143,33 @@ Una vez configurados los secrets:
 - Este error ya no debería ocurrir con GitHub Actions
 - Las credenciales se manejan directamente como secrets
 
+### Error: "You do not currently have an active account selected"
+- **Causa:** El secret `GCP_SERVICE_ACCOUNT_KEY` no está configurado o es inválido
+- **Solución:** 
+  1. Verifica que el secret exista en Settings → Secrets and variables → Actions
+  2. Asegúrate de que el JSON sea válido y esté completo
+  3. El JSON debe comenzar con `{` y terminar con `}`
+  4. No debe tener espacios extra al inicio o final
+
 ### Error: "gcloud: command not found"
 - El workflow usa la action oficial `google-github-actions/setup-gcloud@v2`
 - No requiere instalación manual
 
-### Error: "unauthorized: authentication required"
+### Error: "unauthorized: authentication required" (Docker)
 - Verifica que DOCKER_USERNAME y DOCKER_PASSWORD estén correctos
 - Asegúrate de usar un Access Token de Docker Hub
+- El username debe ser exactamente: `elpachanga1`
 
 ### Error: "cluster not found"
 - Verifica que el nombre del cluster sea correcto: `multi-container-cluster`
 - Verifica que la zona sea correcta: `us-central1`
+- Verifica que el proyecto sea correcto: `multik8s-480817`
+
+### Error: "Invalid credentials" o "Permission denied"
+- Verifica que la service account tenga los permisos necesarios en GCP:
+  - `Kubernetes Engine Developer`
+  - `Storage Object Viewer`
+  - `Service Account User`
 
 ## 🔧 Personalización
 
