@@ -53,6 +53,17 @@ Valor: [Tu contraseña de Docker Hub]
 - Copia el token generado
 - Usa ese token como valor de DOCKER_PASSWORD
 
+#### 4. PGPASSWORD
+```
+Nombre: PGPASSWORD
+Valor: [Tu contraseña para PostgreSQL, ejemplo: mypassword123]
+```
+
+**Importante:** Esta es la contraseña que usará PostgreSQL en tu cluster de Kubernetes. Elige una contraseña segura.
+- Ejemplo: `MySecurePassword123!`
+- No uses caracteres especiales complicados que puedan causar problemas
+- Esta contraseña será usada por tu aplicación para conectarse a la base de datos
+
 ## ⚠️ IMPORTANTE: Seguridad de credenciales
 
 ### ❌ NO HACER:

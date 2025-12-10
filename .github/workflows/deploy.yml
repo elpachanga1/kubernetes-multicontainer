@@ -75,6 +75,11 @@ jobs:
           docker push ${{ env.DOCKER_USERNAME }}/multi-server:${SHA}
           docker push ${{ env.DOCKER_USERNAME }}/multi-worker:${SHA}
 
+      - name: Create PostgreSQL Secret
+        run: |
+          # Create pgpassword secret if it doesn't exist
+          kubectl create secret generic pgpassword --from-literal PGPASSWORD=${{ secrets.PGPASSWORD }} --dry-run=client -o yaml | kubectl apply -f -
+
       - name: Deploy to GKE
         run: |
           SHA=$(git rev-parse HEAD)
