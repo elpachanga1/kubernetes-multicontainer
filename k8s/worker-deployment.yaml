@@ -15,6 +15,7 @@ spec:
       containers:
       - name: worker
         image: elpachanga1/multi-worker
+        imagePullPolicy: IfNotPresent
         env:
         - name: REDIS_HOST
           value: redis-cluster-ip-service
